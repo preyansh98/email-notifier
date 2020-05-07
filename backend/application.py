@@ -38,8 +38,6 @@ def create_profile_and_run_job():
     gmail = req_data['gmail']
     emails = req_data['emails']
 
-    
-
     return  {'token': str(name)}, 200 
 
 @application.route('/', methods=['GET'])
@@ -59,9 +57,8 @@ def init_oauth():
 # Let state identify the user
 @application.route('/oauth-callback', methods=['GET'])
 def oauth_callback(): 
-    get_credentials_on_callback()
-    # needs to return user email back. 
-    return redirect("/",code=302)
+    email = get_credentials_on_callback()
+    return redirect(strin,code=302)
     
 # Run server
 if __name__ == '__main__':
