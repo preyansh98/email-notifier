@@ -1,6 +1,7 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, redirect
 from pymongo import MongoClient
-from google_auth import get_credentials
+from google_auth import *
+from db import initialize_and_return_db_client
 import json
 import os
 
@@ -8,9 +9,7 @@ import os
 application = Flask(__name__)
 
 # Database
-#mongo_str = os.getenv('mongostr')
-mongo_str = "mongodb+srv://admin:adminpassword@email-notifier-db-snhkt.azure.mongodb.net/test?retryWrites=true&w=majority"
-client = MongoClient(mongo_str)
+client = initialize_and_return_db_client()
 profile_collection = client['notifier-db']['profiles']
 
 # Define classes
@@ -39,8 +38,6 @@ def create_profile_and_run_job():
     gmail = req_data['gmail']
     emails = req_data['emails']
 
-    
-
     return  {'token': str(name)}, 200 
 
 @application.route('/', methods=['GET'])
@@ -48,15 +45,20 @@ def say_hello():
     return {'message':'hello'}, 200
 
 
-# OAuth Callback
+# OAuth Routes
 
+# OAuth init
+@application.route('/oauth-start', methods = ['GET'])
+def init_oauth():
+    auth_url = initialize_google_oauth()
+    return redirect(auth_url)
+
+# OAuth Callback
 # Let state identify the user
 @application.route('/oauth-callback', methods=['GET'])
 def oauth_callback(): 
-    oauth_code = request.args['code']
-    state = request.args['state']
-    credentials = get_credentials(oauth_code, state, client)
-    user_creds[state] = credentials
+    email = get_credentials_on_callback()
+    return redirect(strin,code=302)
     
 # Run server
 if __name__ == '__main__':
