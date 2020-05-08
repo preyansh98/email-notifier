@@ -58,7 +58,8 @@ def init_oauth():
 @application.route('/oauth-callback', methods=['GET'])
 def oauth_callback(): 
     email = get_credentials_on_callback()
-    return redirect(strin,code=302)
+    r_uri = "oauth-complete/email="+email
+    return redirect(r_uri,code=302)
     
 # Run server
 if __name__ == '__main__':

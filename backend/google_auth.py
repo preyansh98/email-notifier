@@ -10,6 +10,7 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 from pymongo import MongoClient
 from db import initialize_and_return_db_client
+from urllib.error import HTTPError
 
 # Statics
 
@@ -33,10 +34,10 @@ def initialize_google_oauth():
   )
   flow.redirect_uri = REDIRECT_URI
 
-  authorization_url, state = flow.authorization_url(
+  authorization_url = flow.authorization_url(
     #Need offline access for job processing
     access_type = 'offline',
-  )
+  )[0]
 
   return authorization_url
 
@@ -53,7 +54,7 @@ def get_credentials_on_callback():
 
   # Use the authorization server's response to fetch the OAuth 2.0 tokens.
   auth_code = flask.request.args.get('code')
-  email, credentials = get_credentials_internal(auth_code, "state")
+  email = get_credentials_internal(auth_code, "state")[0]
   return email
 
 
@@ -132,7 +133,6 @@ def get_credentials_internal(authorization_code, state):
     credentials = exchange_code(authorization_code)
     user_info = get_user_info(credentials)
     email_address = user_info.get('email')
-    user_id = user_info.get('id')
     if credentials.refresh_token is not None:
       store_credentials_in_db(email_address, credentials_to_dict(credentials))
       return email_address, credentials
@@ -170,7 +170,8 @@ def get_user_info(credentials):
   user_info = None
   try:
     user_info = user_info_service.userinfo().get().execute()
-  except HttpError as e:
+    # pylint: disable=maybe-no-member
+  except HTTPError as e:
     logging.error('An error occurred: %s', e)
   if user_info and user_info.get('id'):
     return user_info
