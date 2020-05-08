@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import TestPage from './TestPage';
 import OauthHelper from './components/OauthHelper';
 import Particles from "react-particles-js";
+import Dashboard from "./components/Dashboard/DashboardMain"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const particlesOptions = {
@@ -28,6 +29,7 @@ export default class App extends Component {
             <Route exact path = "/" component = {LandingPage}/>
             <Route path = "/test" component = {TestPage} />
             <Route path = "/oauth-complete" component={OauthHelper}/>
+            <Route path = "/dashboard" component = {Dashboard} />
           </Switch>
         </Router>
       </div>
