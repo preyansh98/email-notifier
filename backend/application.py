@@ -60,7 +60,7 @@ def init_oauth():
 def oauth_callback(): 
     email = get_credentials_on_callback()
     # r_uri = "oauth-complete/email="+email
-    r_uri = FRONTEND_URI+"/oauth-complete/email="+email
+    r_uri = FRONTEND_URI+"/oauth-complete?email="+email
     return redirect(r_uri,code=302)
     
 # Run server
