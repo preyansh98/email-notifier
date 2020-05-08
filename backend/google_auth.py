@@ -169,8 +169,8 @@ def get_user_info(credentials):
       http=credentials.authorize(httplib2.Http()))
   user_info = None
   try:
-    user_info = user_info_service.userinfo().get().execute()
     # pylint: disable=maybe-no-member
+    user_info = user_info_service.userinfo().get().execute()
   except HTTPError as e:
     logging.error('An error occurred: %s', e)
   if user_info and user_info.get('id'):
