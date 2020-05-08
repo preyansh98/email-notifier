@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LandingPage from './components/LandingPage/LandingPage';
+import TestPage from './TestPage';
+import OauthHelper from './components/OauthHelper';
+import Particles from "react-particles-js";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const particlesOptions = {
+  particles: {
+    number: {
+      value: 80,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    }
+  }
+};
+
+export default class App extends Component {
+  render(){
+    return (
+      <div>
+        <Router>
+          <Particles className="particles" params={particlesOptions} /> 
+          <Switch>
+            <Route exact path = "/" component = {LandingPage}/>
+            <Route path = "/test" component = {TestPage} />
+            <Route path = "/oauth-complete" component={OauthHelper}/>
+          </Switch>
+        </Router>
+      </div>
+    );      
+  }
 }
-
-export default App;
