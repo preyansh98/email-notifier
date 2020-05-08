@@ -26,6 +26,7 @@ class UserProfile():
 # Globals
 
 user_creds = dict()
+FRONTEND_URI = "http://localhost:3000"
 
 # ENDPOINTS-------------------------------------------------
 
@@ -58,7 +59,8 @@ def init_oauth():
 @application.route('/oauth-callback', methods=['GET'])
 def oauth_callback(): 
     email = get_credentials_on_callback()
-    r_uri = "oauth-complete/email="+email
+    # r_uri = "oauth-complete/email="+email
+    r_uri = FRONTEND_URI+"/oauth-complete/email="+email
     return redirect(r_uri,code=302)
     
 # Run server

@@ -79,8 +79,7 @@ def user_credentials_exist(email_address):
 
 def store_credentials_in_db(email_address, credentials_dict):
   if user_credentials_exist(email_address):
-    creds_collection.find_one_and_update({'email_address':email_address}, {'credentials': credentials_dict})
-    return
+    del_credentials_from_db(email_address)
 
   entry = {'email_address':email_address, 'credentials':credentials_dict}
   creds_collection.insert_one(entry)
