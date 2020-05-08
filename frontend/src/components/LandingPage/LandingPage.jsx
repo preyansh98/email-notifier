@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Card, Button, Jumbotron } from "react-bootstrap";
-import { FaGoogle } from "react-icons/fa";
+import { Card, Button } from "react-bootstrap";
+import { FaGoogle, FaHeart, FaGithub } from "react-icons/fa";
 import { MdUnfoldMore, MdHelp, MdFeedback } from "react-icons/md";
 import { Fab, Action } from "react-tiny-fab";
 import "react-tiny-fab/dist/styles.css";
@@ -34,7 +34,8 @@ export default class LandingPage extends Component {
             </Card.Body>
             <Card.Footer>
               <small className="text-muted">
-                Github Link, Fork Status, Stars etc 
+                <a href = "https://github.com/preyansh98/email-notifier" target="_blank" style={{color:"white"}}><FaGithub/>  </a> 
+                <font color = "white">| Made with <FaHeart/> by Preyansh Kaushik </font> 
               </small>
             </Card.Footer>
           </Card>
@@ -89,5 +90,5 @@ const styles = {
     actionButtonStyles: {
       backgroundColor: "#16a085",
     },
-  },
+  }
 };
