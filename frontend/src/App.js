@@ -1,23 +1,13 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/LandingPage';
-import TestPage from './TestPage';
 import OauthHelper from './components/OauthHelper';
 import Particles from "react-particles-js";
 import Dashboard from "./components/Dashboard/DashboardMain"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-const particlesOptions = {
-  particles: {
-    number: {
-      value: 80,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    }
-  }
-};
+import DashActive from './components/Dashboard/DashActive';
+import DashNew from './components/Dashboard/DashNew';
+import {particlesOptions} from './particlesOptions';
 
 export default class App extends Component {
   render(){
@@ -27,9 +17,10 @@ export default class App extends Component {
           <Particles className="particles" params={particlesOptions} /> 
           <Switch>
             <Route exact path = "/" component = {LandingPage}/>
-            <Route path = "/test" component = {TestPage} />
             <Route path = "/oauth-complete" component={OauthHelper}/>
-            <Route path = "/dashboard" component = {Dashboard} />
+            <Route exact path = "/dashboard" component = {Dashboard} />
+            <Route path = "/dashboard/active" component={DashActive}/>
+            <Route path = "/dashboard/new" component={DashNew}/>
           </Switch>
         </Router>
       </div>
