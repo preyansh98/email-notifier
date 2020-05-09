@@ -7,18 +7,7 @@ import Dashboard from "./components/Dashboard/DashboardMain"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DashActive from './components/Dashboard/DashActive';
 import DashNew from './components/Dashboard/DashNew';
-
-const particlesOptions = {
-  particles: {
-    number: {
-      value: 80,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    }
-  }
-};
+import {particlesOptions} from './particlesOptions';
 
 export default class App extends Component {
   render(){
