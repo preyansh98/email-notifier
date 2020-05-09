@@ -34,7 +34,7 @@ export default class LandingPage extends Component {
             </Card.Body>
             <Card.Footer>
               <small className="text-muted">
-                <a href = "https://github.com/preyansh98/email-notifier" target="_blank" style={{color:"white"}}><FaGithub/>  </a> 
+                <a href = "https://github.com/preyansh98/email-notifier" target="_blank" rel = "noopener noreferrer" style={{color:"white"}}><FaGithub/>  </a> 
                 <font color = "white">| Made with <FaHeart/> by Preyansh Kaushik </font> 
               </small>
             </Card.Footer>
