@@ -1,9 +1,8 @@
 from flask import Flask, request, Response, redirect
 from pymongo import MongoClient
 from google_auth import *
-from multiprocessing import Process
 from db import initialize_and_return_db_client
-import json, os, threading
+import json
 
 
 # Initiate application
