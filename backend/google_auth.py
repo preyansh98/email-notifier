@@ -71,6 +71,8 @@ def get_credentials_for_API(email_address):
   # save them back to session
   store_credentials_in_db(email_address, credentials_to_dict(credentials))
 
+  return credentials
+
 #### DB IMPLEMENTATIONS
 
 def user_credentials_exist(email_address):
