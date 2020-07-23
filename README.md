@@ -1,10 +1,6 @@
 # Email Notifier
 
-Ever find yourself constantly refreshing your inbox when waiting for an important email? Me too! I decided to build this to get rid of that anxiety, and instead just sit back and get a call when you do receive that email. 
-
-## How to use
-
--- Coming soon
+Get a call when you receive an important email! 
 
 ## Contributing Guidelines
 
