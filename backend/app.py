@@ -54,8 +54,8 @@ def get_user_history(email_address, history_id):
 
         return changes
     
-    except errors.HttpError as error:    
-        print 'An error occurred: %s' % error
+    except Exception as error:    
+        print("an error occurred")
         return None
 
 def process_new_messages(new_messages):
