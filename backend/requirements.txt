@@ -1,5 +1,4 @@
 apiclient==1.0.4
-apturl==0.5.2
 asn1crypto==0.24.0
 astroid==2.4.2
 Brlapi==0.6.6
