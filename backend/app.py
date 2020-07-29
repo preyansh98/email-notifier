@@ -54,7 +54,7 @@ def get_user_history(email_address, history_id):
 
         return changes
     
-    except errors.HttpError, error:    
+    except errors.HttpError as error:    
         print 'An error occurred: %s' % error
         return None
 
