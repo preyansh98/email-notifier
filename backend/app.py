@@ -10,6 +10,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 @app.route('/cloud/webhook/', methods=['POST'])
 def post_placeholder():
     req_data = request.get_json()
+    print(req_data)
     notif_payload = req_data['message']['data']
     
     decoded = base64.b64decode(notif_payload).decode('utf-8')
@@ -24,6 +25,7 @@ def post_placeholder():
     # get email history
     all_history = get_user_history(email_address, history_id)
 
+    print(all_history)
     if all_history is not None:
         new_messages = all_history[0]['messagesAdded']
         process_new_messages(new_messages)
