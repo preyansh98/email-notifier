@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from gauth_module import setup_gmail_api_auth
 import json
 import base64
+import sys
 app = Flask(__name__)
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
@@ -11,6 +12,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 def post_placeholder():
     req_data = request.get_json()
     print(req_data)
+    sys.stdout.flush()
     notif_payload = req_data['message']['data']
     
     decoded = base64.b64decode(notif_payload).decode('utf-8')
@@ -26,6 +28,8 @@ def post_placeholder():
     all_history = get_user_history(email_address, history_id)
 
     print(all_history)
+    sys.stdout.flush()
+    
     if all_history is not None:
         new_messages = all_history[0]['messagesAdded']
         process_new_messages(new_messages)
