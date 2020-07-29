@@ -6,11 +6,18 @@ app = Flask(__name__)
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
-# process webhook from cloud pubsub
-@app.route('/cloud/webhook/', methods=['POST'])
-def post_placeholder():
+@app.route('/cloud/test', methods=['POST'])
+def post_test():
     req_data = request.get_json()
     print(req_data, flush=True)
+    return { 'status' : 'success' }, 200
+
+# process webhook from cloud pubsub
+@app.route('/cloud/webhook', methods=['POST'])
+def post_webhook():
+    req_data = request.get_json()
+    print(req_data, flush=True)
+
     notif_payload = req_data['message']['data']
     
     decoded = base64.b64decode(notif_payload).decode('utf-8')
@@ -24,7 +31,7 @@ def post_placeholder():
 
     # get email history
     all_history = get_user_history(email_address, history_id)
-    print(all_history,flush=True)
+    print(all_history, flush=True)
 
     if all_history is not None:
         new_messages = all_history[0]['messagesAdded']
@@ -34,7 +41,6 @@ def post_placeholder():
 
 @app.route('/')
 def index():
-    print("logging check", flush=True)
     return "<h1>Welcome to this server</h1>"
 
 def get_user_history(email_address, history_id):
