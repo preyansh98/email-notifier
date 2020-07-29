@@ -48,7 +48,7 @@ def get_user_history(email_address, history_id):
             page_token = history['nextPageToken']
             history = (service.users().history().list(userId=user_id,
                                             startHistoryId=start_history_id,
-                                            historyTypes='messageAdded'
+                                            historyTypes='messageAdded',
                                             pageToken=page_token).execute())
             changes.extend(history['history'])
 
