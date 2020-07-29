@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
-@app.route('/cloud/webhook/', methods=['POST'])
+@app.route('/cloud/webhook', methods=['POST'])
 def post_placeholder():
     req_data = request.get_json()
-    print(req_data)
+    print(req_data, flush=True)
     return {'status' : 'success'}, 200   
 
 @app.route('/')
